@@ -1,5 +1,7 @@
 <?php
-namespace Models;
+namespace OCLC\WorldCatRegistryDemo\Models;
+
+use \EasyRdf_Resource;
 
 class HoursSpec extends EasyRdf_Resource
 {

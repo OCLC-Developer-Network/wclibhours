@@ -22,7 +22,7 @@
 			"app/views"
 		],
 		"psr-4" : {
-			"OCLC\\WorldCatRegistryDemo" : "app"
+			"OCLC\\WorldCatRegistryDemo\\" : "app"
 		}
 	},
 	"keywords" : [

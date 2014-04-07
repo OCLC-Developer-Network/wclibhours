@@ -8,4 +8,9 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader">
+    <testsuites>
+    <testsuite name="IRHours">
+      <directory>.</directory>
+    </testsuite>
+  </testsuites>
   </phpunit>

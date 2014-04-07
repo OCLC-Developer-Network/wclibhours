@@ -4,5 +4,8 @@ require '../vendor/autoload.php';
 
 //load yaml file
 global $config;
-$config = Yaml::parse('../app/config/config.yaml');
+
+use Symfony\Yaml;
+
+//$config = Yaml::parse('../app/config/config.yaml');
 ?>

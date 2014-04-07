@@ -1,6 +1,8 @@
 <?php
 namespace OCLC\WorldCatRegistryDemo\Models;
 
+use \EasyRdf_Resource;
+
 Class Institution extends EasyRdf_Resource
 {
     function getName()
