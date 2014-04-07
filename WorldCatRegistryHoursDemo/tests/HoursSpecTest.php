@@ -26,8 +26,8 @@ Class HoursSpecTest extends \PHPUnit_Framework_TestCase {
 	    $this->assertNotEmpty($hoursSpec->getOpenStatus());
 	}
 	
-	/** can parse Special Hours */
-	function testParseSpecialHours(){
+	/** can parse Special Hours Closed*/
+	function testParseSpecialHoursClosed(){
 	    $this->graph = new EasyRdf_Graph();
 	    $this->graph->parseFile("sample-data/special-hours.rdf");
 	    $hoursSpecs = $this->graph->allOfType('wcir:hoursSpecification');
@@ -35,8 +35,20 @@ Class HoursSpecTest extends \PHPUnit_Framework_TestCase {
 	    $this->assertNotEmpty($hoursSpec->getStartDate());
 	    $this->assertNotEmpty($hoursSpec->getEndDate());
 	    $this->assertNotEmpty($hoursSpec->getDescription());
-	    $this->assertNotEmpty($hoursSpec->getOpeningTime());
-	    $this->assertNotEmpty($hoursSpec->getClosingTime());
 	    $this->assertNotEmpty($hoursSpec->getOpenStatus());
+	}
+	
+	/** can parse Special Hours Open*/
+	function testParseSpecialHoursOpen(){
+	    $this->graph = new EasyRdf_Graph();
+	    $this->graph->parseFile("sample-data/special-hours.rdf");
+	    $hoursSpecs = $this->graph->allOfType('wcir:hoursSpecification');
+	    $hoursSpec = $hoursSpecs[1];
+	    $this->assertNotEmpty($hoursSpec->getStartDate());
+	    $this->assertNotEmpty($hoursSpec->getEndDate());
+	    $this->assertNotEmpty($hoursSpec->getDescription());
+	    $this->assertNotEmpty($hoursSpec->getOpenStatus());
+		$this->assertNotEmpty($hoursSpec->getOpeningTime());
+		$this->assertNotEmpty($hoursSpec->getClosingTime());
 	}
 }
