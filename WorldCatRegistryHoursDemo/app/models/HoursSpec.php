@@ -40,11 +40,8 @@ class HoursSpec extends EasyRdf_Resource
     
     static function parseDayOfWeekFromUri($uri)
     {
-        $needles = array(
-            'https://worldcat.org/wcr/normal-hours/resource/128807#',
-            'https://www.worldcat.org/wcr/normal-hours/resource/128807#'
-        );
-        return str_replace($needles, '', $uri);
+        $dayOfWeek = substr($uri, strpos($uri, "#")+1);
+        return $dayOfWeek;
     }
 }
 ?>
