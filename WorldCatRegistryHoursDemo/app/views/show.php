@@ -29,9 +29,9 @@ foreach($org->getSortedSpecialHoursSpecs() as $hoursSpec)
 {
     print "<h3>" . $hoursSpec->getDescription() . "</h3>\n";
     print "<p>";
-    print $hoursSpec->getStartDate();
+    print $hoursSpec->getStartDate(TRUE);
     if ($hoursSpec->getEndDate() != $hoursSpec->getStartDate())
-        print ' - ' . $hoursSpec->getEndDate() . ' ';
+        print ' - ' . $hoursSpec->getEndDate(TRUE) . ' ';
     print "</p>\n";
     print "<p>";
     print $hoursSpec->getOpenStatus() . ' ';
@@ -40,6 +40,8 @@ foreach($org->getSortedSpecialHoursSpecs() as $hoursSpec)
     print "</p>";
     print "\n\n";
 }
+
+// Show associated branches
 ?>
 </body>
 </html>

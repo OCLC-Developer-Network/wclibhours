@@ -25,19 +25,23 @@ class HoursSpec extends EasyRdf_Resource
         return $this->get('wcir:description');
     }
     
-    function getStartDate($format = null)
-    {   if (empty($format)){
-            $format = 'F j, Y';
+    function getStartDate($format= FALSE)
+    {
+        if ($format){
+            return static::formatDateTimeAsDate($this->get('wcir:validFrom'));
+        } else {
+            return $this->get('wcir:validFrom');
         }
-        return static::formatDateTimeAsDate($this->get('wcir:validFrom'), $format);
+  
     }
     
-    function getEndDate($format = null)
+    function getEndDate($format = FALSE)
     {
-        if (empty($format)){
-            $format = 'F j, Y';
+        if ($format){
+            return static::formatDateTimeAsDate($this->get('wcir:validTo'));
+        } else {
+            return $this->get('wcir:validTo');
         }
-        return static::formatDateTimeAsDate($this->get('wcir:validTo'), $format);
     }
 
     function getOpenStatus()
@@ -51,10 +55,11 @@ class HoursSpec extends EasyRdf_Resource
         return $dayOfWeek;
     }
     
-    private static function formatDateTimeAsDate($dateTime, $format) 
+    private static function formatDateTimeAsDate($dateTime) 
     {
-        $dateTimeObject = new DateTime($dateTime, new DateTimeZone('America/New_York')); // needs to come from YAML
-        return $dateTimeObject->format($format);
+        global $config;
+        $dateTimeObject = new \DateTime($dateTime, new \DateTimeZone($config['timezone']));
+        return $dateTimeObject->format($config['dateFormat']);
     }
 }
 ?>
