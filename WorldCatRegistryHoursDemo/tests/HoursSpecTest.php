@@ -19,11 +19,12 @@ Class HoursSpecTest extends \PHPUnit_Framework_TestCase {
 	    $hoursSpecs = $this->graph->allOfType('wcir:hoursSpecification');
 	    $hoursSpec = $hoursSpecs[0];
 	    $this->assertNotEmpty($hoursSpec->getDayOfWeek());
-	    // want to check to see this is a real day of the week array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday')
-	    
-	    $this->assertNotEmpty($hoursSpec->getOpeningTime());
-	    $this->assertNotEmpty($hoursSpec->getClosingTime());
-	    $this->assertNotEmpty($hoursSpec->getOpenStatus());
+	    // want to check to see this is a real day of the week 
+	    $validDays = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+	    $this->assertContains($hoursSpec->getDayOfWeek(), $validDays);
+	    $this->assertEquals('08:00', $hoursSpec->getOpeningTime());
+	    $this->assertEquals('17:00', $hoursSpec->getClosingTime());
+	    $this->assertEquals('Open', $hoursSpec->getOpenStatus());
 	}
 	
 	/** can parse Special Hours Closed*/
@@ -32,10 +33,12 @@ Class HoursSpecTest extends \PHPUnit_Framework_TestCase {
 	    $this->graph->parseFile("sample-data/special-hours.rdf");
 	    $hoursSpecs = $this->graph->allOfType('wcir:hoursSpecification');
 	    $hoursSpec = $hoursSpecs[0];
-	    $this->assertNotEmpty($hoursSpec->getStartDate());
-	    $this->assertNotEmpty($hoursSpec->getEndDate());
-	    $this->assertNotEmpty($hoursSpec->getDescription());
-	    $this->assertNotEmpty($hoursSpec->getOpenStatus());
+	    $this->assertEquals('2013-12-25T12:00:00', $hoursSpec->getStartDate());
+	    $this->assertEquals('2013-12-25T12:00:00', $hoursSpec->getEndDate());
+	    $this->assertEquals('Christmas', $hoursSpec->getDescription());
+	    $this->assertEquals('Closed', $hoursSpec->getOpenStatus());
+	    $this->assertEmpty($hoursSpec->getOpeningTime());
+	    $this->assertEmpty($hoursSpec->getClosingTime());
 	}
 	
 	/** can parse Special Hours Open*/
@@ -44,11 +47,11 @@ Class HoursSpecTest extends \PHPUnit_Framework_TestCase {
 	    $this->graph->parseFile("sample-data/special-hours.rdf");
 	    $hoursSpecs = $this->graph->allOfType('wcir:hoursSpecification');
 	    $hoursSpec = $hoursSpecs[1];
-	    $this->assertNotEmpty($hoursSpec->getStartDate());
-	    $this->assertNotEmpty($hoursSpec->getEndDate());
-	    $this->assertNotEmpty($hoursSpec->getDescription());
-	    $this->assertNotEmpty($hoursSpec->getOpenStatus());
-		$this->assertNotEmpty($hoursSpec->getOpeningTime());
-		$this->assertNotEmpty($hoursSpec->getClosingTime());
+	    $this->assertEquals('2014-03-16T12:00:00', $hoursSpec->getStartDate());
+	    $this->assertEquals('2014-03-22T12:00:00', $hoursSpec->getEndDate());
+	    $this->assertEquals('Spring Break 2014', $hoursSpec->getDescription());
+	    $this->assertEquals('Open', $hoursSpec->getOpenStatus());
+		$this->assertEquals('09:00', $hoursSpec->getOpeningTime());
+		$this->assertEquals('17:00', $hoursSpec->getClosingTime());
 	}
 }
