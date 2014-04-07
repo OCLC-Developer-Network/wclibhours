@@ -1,0 +1,33 @@
+{
+	"require" : {
+		"php" : ">=5.3.3",
+		"lib-curl" : "*",
+		"ext-curl" : "*",
+		"easyrdf/easyrdf" : "*",
+		"symfony/yaml" : "~2.3.7"
+	},
+	"require-dev" : {
+		"phpunit/phpunit" : "~3"
+	},
+	"name" : "OCLC/WCRegistryHoursDemo",
+	"license" : "Apache-2.0",
+	"support" : {
+		"email" : "devnet@oclc.org"
+	},
+	"type" : "project",
+	"autoload" : {
+		"classmap" : [
+			"app/models",
+			"app/helpers",
+			"app/views"
+		],
+		"psr-4" : {
+			"OCLC\\WorldCatRegistryDemo" : "app"
+		}
+	},
+	"keywords" : [
+		"OCLC",
+		"WorldCat Registry",
+		"Hours"
+	]
+}
