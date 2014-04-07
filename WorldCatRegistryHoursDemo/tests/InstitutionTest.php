@@ -35,4 +35,10 @@ Class InstitutionTest extends \PHPUnit_Framework_TestCase {
 	    $this->assertInstanceOf('OCLC\WorldCatRegistryDemo\Models\HoursSpec', $specialHours[0]);
 	    
 	}
+	
+	/** Load Organization but not Hours part of graph */
+	
+	/** Organization with no special hours */
+	
+	/** Organization with no hours */
 }
