@@ -1,12 +1,11 @@
 <html>
 <head>
-  <title><?php print $org->getName(); ?></title>
+<title><?php print $org->getName(); ?></title>
   <style type="text/css">
   body { font-family: Helvetica, Verdana, sans-serif; margin: 2em 15%; }
   </style>
 </head>
 <body>
-
 <h1><?php print $org->getName(); ?></h1>
 
 <h2>Normal Hours</h2>
@@ -41,7 +40,6 @@ foreach($org->getSortedSpecialHoursSpecs() as $hoursSpec)
     print "\n\n";
 }
 
-// Show associated branches
 ?>
 </body>
 </html>
