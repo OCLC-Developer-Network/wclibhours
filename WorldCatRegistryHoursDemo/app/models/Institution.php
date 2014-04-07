@@ -33,7 +33,7 @@ Class Institution extends EasyRdf_Resource
         foreach ($hoursResources->all('wcir:hoursSpecifiedBy') as $hoursSpec)
         {
             $dayOfWeek = HoursSpec::parseDayOfWeekFromUri($hoursSpec->getUri());
-            $sortedHoursResources[getDayOrder($dayOfWeek)] = $hoursSpec;
+            $sortedHoursResources[static::getDayOrder($dayOfWeek)] = $hoursSpec;
         }
         return $sortedHoursResources;
     }
@@ -57,6 +57,20 @@ Class Institution extends EasyRdf_Resource
             $i++;
         }
         return $sortedHoursSpecs;
+    }
+    
+    private static function getDayOrder($dayOfWeek)
+    {
+        $days = array(
+            'Sunday' => 1,
+            'Monday' => 2,
+            'Tuesday' => 3,
+            'Wednesday' => 4,
+            'Thursday' => 5,
+            'Friday' => 6,
+            'Saturday' => 7
+        );
+        return $days[$dayOfWeek];
     }
 }
 ?>

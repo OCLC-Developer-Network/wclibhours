@@ -29,9 +29,9 @@ foreach($org->getSortedSpecialHoursSpecs() as $hoursSpec)
 {
     print "<h3>" . $hoursSpec->getDescription() . "</h3>\n";
     print "<p>";
-    print formatDateTimeAsDate($hoursSpec->getStartDate());
-    if (formatDateTimeAsDate($hoursSpec->getEndDate()) != formatDateTimeAsDate($hoursSpec->getStartDate()))
-        print ' - ' . formatDateTimeAsDate($hoursSpec->getEndDate()) . ' ';
+    print $hoursSpec->getStartDate();
+    if ($hoursSpec->getEndDate() != $hoursSpec->getStartDate())
+        print ' - ' . $hoursSpec->getEndDate() . ' ';
     print "</p>\n";
     print "<p>";
     print $hoursSpec->getOpenStatus() . ' ';
