@@ -15,16 +15,33 @@ Class Institution extends EasyRdf_Resource
     function getNormalHoursSpecs()
     {
         $normalHours = $this->all('wcir:normalHours');
-        $sortedHoursSpecs = $this->sortNormalHoursSpecs($normalHours[0]);
+        if (!empty($normalHours) && count($normalHours[0]->all('wcir:hoursSpecifiedBy')) == 0){
+            Throw new \Exception('You must load the relevant normal hours into the graph');
+        }
+        
+        if(empty($normalHours)) {
+            $sortedHoursSpecs = array();
+        } else {
+            $sortedHoursSpecs = $this->sortNormalHoursSpecs($normalHours[0]);
+        }
         return $sortedHoursSpecs;
     }
 
     function getSortedSpecialHoursSpecs()
     {
         $specialHours = $this->all('wcir:specialHours');
-        $specialHoursSpec = $specialHours[0];
-        $hoursSpecs = $specialHoursSpec->all('wcir:hoursSpecifiedBy');
-        return $this->sortSpecialHoursSpecs($hoursSpecs);
+        if (!empty($specialHours) && count($specialHours[0]->all('wcir:hoursSpecifiedBy')) == 0){
+            Throw new \Exception('You must load the relevant special hours into the graph');
+        }
+        
+        if (empty($specialHours)){
+            $hoursSpecs = array();
+        } else {
+            $specialHoursSpec = $specialHours[0];
+            $hoursSpecs = $specialHoursSpec->all('wcir:hoursSpecifiedBy');
+            $hoursSpecs = $this->sortSpecialHoursSpecs($hoursSpecs);
+        }
+        return $hoursSpecs;
     }
     
     private function sortNormalHoursSpecs($hoursResources)
