@@ -16,11 +16,6 @@
 	},
 	"type" : "project",
 	"autoload" : {
-		"classmap" : [
-			"app/models",
-			"app/helpers",
-			"app/views"
-		],
 		"psr-4" : {
 			"OCLC\\WorldCatRegistryDemo\\" : "app"
 		}
