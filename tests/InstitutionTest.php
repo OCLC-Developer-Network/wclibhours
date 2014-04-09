@@ -12,8 +12,6 @@ Class InstitutionTest extends \PHPUnit_Framework_TestCase {
         EasyRdf_TypeMapper::set('wcir:hoursSpecification', 'OCLC\WorldCatRegistryDemo\Models\HoursSpec');
         $this->graph = new EasyRdf_Graph();
         $this->graph->parseFile("sample-data/organization.rdf");
-        $this->graph->parseFile("sample-data/normal-hours.rdf");
-        $this->graph->parseFile("sample-data/special-hours.rdf");
 	}
 	
 	/** can parse Organization */
@@ -36,38 +34,10 @@ Class InstitutionTest extends \PHPUnit_Framework_TestCase {
 	    
 	}
 	
-	/** Load Organization but not Normal Hours part of graph 
-	 * @expectedException Exception
-     * @expectedExceptionMessage You must load the relevant normal hours into the graph
-	 * 
-	 */
-	function testParseNoLoadNormalHoursGraph(){
-	    $this->graphOrgOnly = new EasyRdf_Graph();
-	    $this->graphOrgOnly->parseFile("sample-data/organization.rdf");
-	    $orgs = $this->graphOrgOnly->allOfType('schema:Organization');
-	    $org = $orgs[0];
-	    $org->getNormalHoursSpecs();
-	}
-	
-	/** Load Organization but not Special Hours part of graph
-	 * @expectedException Exception
-	 * @expectedExceptionMessage You must load the relevant special hours into the graph
-	 *
-	 */
-	function testParseNoLoadSpecialHoursGraph(){
-	    $this->graphOrgOnly = new EasyRdf_Graph();
-	    $this->graphOrgOnly->parseFile("sample-data/organization.rdf");
-	    $orgs = $this->graphOrgOnly->allOfType('schema:Organization');
-	    $this->graphOrgOnly->parseFile("sample-data/normal-hours.rdf");
-	    $org = $orgs[0];
-	    $org->getSortedSpecialHoursSpecs();
-	}
-	
 	/** Organization with no special hours */
 	function testParseNoSpecialHoursHoursGraph(){
 	    $this->graphOrgOnly = new EasyRdf_Graph();
 	    $this->graphOrgOnly->parseFile("sample-data/organizationNoSpecialHours.rdf");
-	    $this->graphOrgOnly->parseFile("sample-data/normal-hours.rdf");
 	    $orgs = $this->graphOrgOnly->allOfType('schema:Organization');
 	    $org = $orgs[0];
 	    $this->assertEquals('OCLC WorldShare Platform Sandbox Institution', $org->getName());

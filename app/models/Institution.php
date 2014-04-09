@@ -2,9 +2,17 @@
 namespace OCLC\WorldCatRegistryDemo\Models;
 
 use \EasyRdf_Resource;
+use \EasyRdf_Format;
 
 Class Institution extends EasyRdf_Resource
 {
+    
+    function __construct($uri, $graph=null) {
+        EasyRdf_Format::unregister('json');
+        parent::__construct($uri, $graph);
+        
+    }
+    
     function getName()
     {
         $names = $this->all('schema:name');
@@ -15,13 +23,11 @@ Class Institution extends EasyRdf_Resource
     function getNormalHoursSpecs()
     {
         $normalHours = $this->all('wcir:normalHours');
-        if (!empty($normalHours) && count($normalHours[0]->all('wcir:hoursSpecifiedBy')) == 0){
-            Throw new \Exception('You must load the relevant normal hours into the graph');
-        }
-        
+                
         if(empty($normalHours)) {
             $sortedHoursSpecs = array();
         } else {
+            $this->graph->load($this->getResource('wcir:normalHours')->getUri());
             $sortedHoursSpecs = $this->sortNormalHoursSpecs($normalHours[0]);
         }
         return $sortedHoursSpecs;
@@ -30,13 +36,11 @@ Class Institution extends EasyRdf_Resource
     function getSortedSpecialHoursSpecs()
     {
         $specialHours = $this->all('wcir:specialHours');
-        if (!empty($specialHours) && count($specialHours[0]->all('wcir:hoursSpecifiedBy')) == 0){
-            Throw new \Exception('You must load the relevant special hours into the graph');
-        }
         
         if (empty($specialHours)){
             $hoursSpecs = array();
         } else {
+            $this->graph->load($this->getResource('wcir:specialHours')->getUri());
             $specialHoursSpec = $specialHours[0];
             $hoursSpecs = $specialHoursSpec->all('wcir:hoursSpecifiedBy');
             $hoursSpecs = $this->sortSpecialHoursSpecs($hoursSpecs);
