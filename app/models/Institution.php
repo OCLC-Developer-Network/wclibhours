@@ -27,7 +27,12 @@ Class Institution extends EasyRdf_Resource
         if(empty($normalHours)) {
             $sortedHoursSpecs = array();
         } else {
-            $this->graph->load($this->getResource('wcir:normalHours')->getUri());
+            $url = parse_url($this->getResource('wcir:normalHours')->getUri());
+            if ($url['scheme'] == 'file'){
+                $this->graph->parseFile($url['host'] . $url['path']);
+            } else {
+                $this->graph->load($this->getResource('wcir:normalHours')->getUri());
+            }
             $sortedHoursSpecs = $this->sortNormalHoursSpecs($normalHours[0]);
         }
         return $sortedHoursSpecs;
@@ -40,7 +45,12 @@ Class Institution extends EasyRdf_Resource
         if (empty($specialHours)){
             $hoursSpecs = array();
         } else {
-            $this->graph->load($this->getResource('wcir:specialHours')->getUri());
+            $url = parse_url($this->getResource('wcir:specialHours')->getUri());
+            if ($url['scheme'] == 'file'){
+                $this->graph->parseFile($url['host'] . $url['path']);
+            } else {
+                $this->graph->load($this->getResource('wcir:specialHours')->getUri());
+            }
             $specialHoursSpec = $specialHours[0];
             $hoursSpecs = $specialHoursSpec->all('wcir:hoursSpecifiedBy');
             $hoursSpecs = $this->sortSpecialHoursSpecs($hoursSpecs);

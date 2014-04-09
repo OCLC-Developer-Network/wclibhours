@@ -19,13 +19,13 @@
         <rdfs:seeAlso rdf:resource="https://worldcat.org/wcr/isil/resource/OCLC-OCPSB"/>
         <wcir:testInstitution>true</wcir:testInstitution>
         <wcir:trainingInstitution>false</wcir:trainingInstitution>
-        <wcir:normalHours rdf:resource="https://worldcat.org/wcr/normal-hours/resource/128807"/>
+        <wcir:normalHours rdf:resource="file://sample-data/normal-hours.rdf"/>
         <umbel:isLike rdf:resource="https://worldcat.org/wcr/oclc-account/resource/OCLC%20COOP%20PLATFORM%20SANDBOX%20INST"/>
         <umbel:isLike rdf:resource="https://worldcat.org/wcr/oclc-customer/resource/01OCLC20115398"/>
         <library:manages rdf:resource="https://worldcat.org/wcr/oclc-symbol/resource/OCPSB"/>
         <wcir:usesOPAC rdf:resource="https://worldcat.org/wcr/opac/resource/9341892"/>
         <schema:telephone>614-761-6000</schema:telephone>
-        <wcir:specialHours rdf:resource="https://worldcat.org/wcr/special-hours/resource/128807"/>
+        <wcir:specialHours rdf:resource="file://sample-data/special-hours.rdf"/>
         <wcir:publicWiFi>false</wcir:publicWiFi>
         <wcir:hasWMSConfig rdf:resource="https://worldcat.org/wcr/wms-config/resource/128807"/>
     </rdf:Description>
