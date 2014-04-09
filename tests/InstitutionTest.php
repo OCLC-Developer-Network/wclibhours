@@ -64,4 +64,26 @@ Class InstitutionTest extends \PHPUnit_Framework_TestCase {
 	    $this->assertEmpty($org->getNormalHoursSpecs());
 	    $this->assertEmpty($org->getSortedSpecialHoursSpecs());
 	}
+	
+	/** Integration Test with Institution Registry */
+	
+	function testParseIntegration(){
+	    $liveDataGraph = new EasyRdf_Graph();
+	    $liveDataGraph->load('https://worldcat.org/wcr/organization/resource/128807');
+	    $orgs = $liveDataGraph->allOfType('schema:Organization');
+	    $org = $orgs[0];
+	    $this->assertEquals('OCLC WorldShare Platform Sandbox Institution', $org->getName());
+	     
+	    $this->assertNotNull($org->getNormalHoursSpecs());
+	    $this->assertCount(7, $org->getNormalHoursSpecs());
+	    $normalHours = $org->getNormalHoursSpecs();
+	    $this->assertInstanceOf('OCLC\WorldCatRegistryDemo\Models\HoursSpec', $normalHours[1]);
+	    $SundayHours = $normalHours[1];
+	    $this->assertEquals('Sunday', $SundayHours->getDayOfWeek());
+	     
+	    $this->assertNotNull($org->getSortedSpecialHoursSpecs());
+	    $this->assertCount(2, $org->getSortedSpecialHoursSpecs());
+	    $specialHours = $org->getSortedSpecialHoursSpecs();
+	    $this->assertInstanceOf('OCLC\WorldCatRegistryDemo\Models\HoursSpec', $specialHours[0]);
+	}
 }
