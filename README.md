@@ -25,6 +25,10 @@ $ php composer.phar install
 [http://localhost/wclibhours/](http://localhost/wclibhours/)
 
 ## Running the tests
+
+The tests primarly use local files (tests/sample-data) to perform testing. These local file assume that you are running a web server on localhost port 80. 
+One integration test (testParseIntegration) is also present in OrganizationTest. This queries live data in the WorldCat Registry.
+
 In a Terminal Window
 
 ```bash
