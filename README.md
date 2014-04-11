@@ -8,7 +8,7 @@ An app that demonstrated parsing WorldCat Registry RDF data to display library h
 
 ```bash
 $ cd {YOUR-APACHE-DOCUMENT-ROOT}
-$ git clone https://github.com/oclc-developer-house/wclibhours.git
+$ git clone https://github.com/OCLC-Developer-Network/wclibhours.git
 $ cd wclibhours
 ```
 
