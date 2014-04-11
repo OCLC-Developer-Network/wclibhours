@@ -5,6 +5,7 @@ An app that demonstrated parsing WorldCat Registry RDF data to display library h
 ## Installation
 
 ### Step 1: Install from github
+In a Terminal Window
 
 ```bash
 $ cd {YOUR-APACHE-DOCUMENT-ROOT}
@@ -22,3 +23,11 @@ $ php composer.phar install
 ## Usage
 
 [http://localhost/wclibhours/](http://localhost/wclibhours/)
+
+## Running the tests
+In a Terminal Window
+
+```bash
+$ cd tests/
+$ ../vendor/phpunit
+```

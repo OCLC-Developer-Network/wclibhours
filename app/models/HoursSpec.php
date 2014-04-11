@@ -1,5 +1,5 @@
 <?php
-namespace OCLC\WorldCatRegistryDemo\Models;
+namespace WorldCat\Registry;
 
 use \EasyRdf_Resource;
 

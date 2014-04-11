@@ -8,24 +8,26 @@
 <body>
 <h1><?php print $org->getName(); ?></h1>
 
-<?php if (!empty($sortedHoursSpecs)):?>
-    <h2>Normal Hours</h2>
-    <?php
+<?php 
+$sortedHoursSpecs = $org->getNormalHoursSpecs();
+$sortedSpecialHoursSpecs = $org->getSortedSpecialHoursSpecs();
+
+if (!empty($sortedHoursSpecs)){
+    print "<h2>Normal Hours</h2>";
     foreach (range(1, 7) as $number) 
     {
         print "<p>";
         $hoursSpec = $sortedHoursSpecs[$number];
-        print '<strong>' . $hoursSpec->getDayOfWeek() . ':</strong> ';
+        print "<strong>" . $hoursSpec->getDayOfWeek() . ":</strong> ";
         print $hoursSpec->getOpeningTime() . ' ';
         print $hoursSpec->getClosingTime() . ' ';
         print "</p>\n";
     }
-endif;
+}
 ?>
 
-<?php if (!empty($sortedSpecialHoursSpecs)):?>
-    <h2>Breaks &amp; Holidays</h2>
-    <?php
+<?php if (!empty($sortedSpecialHoursSpecs)){
+    print "<h2>Breaks &amp; Holidays</h2>";
     foreach($sortedSpecialHoursSpecs as $hoursSpec)
     {
         print "<h3>" . $hoursSpec->getDescription() . "</h3>\n";
@@ -41,7 +43,7 @@ endif;
         print "</p>";
         print "\n\n";
     }
-endif;
+}
 ?>
 </body>
 </html>

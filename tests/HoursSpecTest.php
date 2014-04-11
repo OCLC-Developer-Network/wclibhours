@@ -1,5 +1,5 @@
 <?php
-use Models\HoursSpec;
+use WorldCat\Registry\HoursSpec;
 
 Class HoursSpecTest extends \PHPUnit_Framework_TestCase {
 

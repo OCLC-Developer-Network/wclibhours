@@ -17,7 +17,7 @@
 	"type" : "project",
 	"autoload" : {
 		"psr-4" : {
-			"OCLC\\WorldCatRegistryDemo\\" : "app"
+			"WorldCat\\Registry\\" : "app/models"
 		}
 	},
 	"keywords" : [

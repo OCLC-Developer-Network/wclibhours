@@ -19,7 +19,7 @@
         <rdfs:seeAlso rdf:resource="https://worldcat.org/wcr/isil/resource/OCLC-OCPSB"/>
         <wcir:testInstitution>true</wcir:testInstitution>
         <wcir:trainingInstitution>false</wcir:trainingInstitution>
-        <wcir:normalHours rdf:resource="file://sample-data/normal-hours.rdf"/>
+        <wcir:normalHours rdf:resource="http://localhost/wclibhours/tests/sample-data/normal-hours.rdf"/>
         <umbel:isLike rdf:resource="https://worldcat.org/wcr/oclc-account/resource/OCLC%20COOP%20PLATFORM%20SANDBOX%20INST"/>
         <umbel:isLike rdf:resource="https://worldcat.org/wcr/oclc-customer/resource/01OCLC20115398"/>
         <library:manages rdf:resource="https://worldcat.org/wcr/oclc-symbol/resource/OCPSB"/>
