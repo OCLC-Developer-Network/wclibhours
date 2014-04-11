@@ -21,7 +21,11 @@ $graph->load('https://worldcat.org/wcr/organization/resource/' . $config['instit
 
 $orgs = $graph->allOfType('schema:Organization');
 $org = $orgs[0];
-  
+
+
+$sortedHoursSpecs = $org->getNormalHoursSpecs();
+$sortedSpecialHoursSpecs = $org->getSortedSpecialHoursSpecs();
+
 include 'app/views/show.php';
 
 ?>
