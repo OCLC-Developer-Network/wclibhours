@@ -5,14 +5,7 @@ use \EasyRdf_Resource;
 use \EasyRdf_Format;
 
 Class Organization extends EasyRdf_Resource
-{
-    
-    function __construct($uri, $graph=null) {
-        EasyRdf_Format::unregister('json');
-        parent::__construct($uri, $graph);
-        
-    }
-    
+{   
     function getName()
     {
         $names = $this->all('schema:name');

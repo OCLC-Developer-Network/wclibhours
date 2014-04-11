@@ -6,6 +6,7 @@ Class OrganizationTest extends \PHPUnit_Framework_TestCase {
 	private $graph;
 
 	function setUp(){
+	    EasyRdf_Format::unregister('json');
 		EasyRdf_Namespace::set('schema', 'http://schema.org/');
         EasyRdf_Namespace::set('wcir', 'http://purl.org/oclc/ontology/wcir/');
         EasyRdf_TypeMapper::set('schema:Organization', 'WorldCat\Registry\Organization');
