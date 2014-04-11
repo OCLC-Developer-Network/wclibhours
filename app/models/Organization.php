@@ -6,13 +6,28 @@ use \EasyRdf_Format;
 
 class Organization extends EasyRdf_Resource
 {
-
+    /**
+     * A class that represents an Organization in the WorldCat Registry
+     *
+     */
+    
+    /**
+     * Get Name
+     *
+     * @return string
+     */
     function getName()
     {
         $names = $this->all('schema:name');
         $name = $names[0];
         return $name->getValue();
     }
+    
+    /**
+     * Get Normal Hours Specifications
+     *
+     * @return array
+     */
 
     function getNormalHoursSpecs()
     {
@@ -27,6 +42,12 @@ class Organization extends EasyRdf_Resource
         }
         return $sortedHoursSpecs;
     }
+    
+    /**
+     * Get Special Hours Specifications
+     *
+     * @return array
+     */
 
     function getSortedSpecialHoursSpecs()
     {
@@ -43,6 +64,13 @@ class Organization extends EasyRdf_Resource
         }
         return $hoursSpecs;
     }
+    
+    /**
+     * Sort the Normal Hours by day of the week
+     *
+     * @var array 
+     * @return array
+     */
 
     private function sortNormalHoursSpecs($hoursResources)
     {
@@ -54,6 +82,13 @@ class Organization extends EasyRdf_Resource
         return $sortedHoursResources;
     }
 
+    /**
+     * Sort the Special Hours by Date
+     *
+     * @var array
+     * @return array
+     */
+    
     private function sortSpecialHoursSpecs($specialHoursSpecs)
     {
         $sortedHoursSpecs = array();
@@ -72,6 +107,13 @@ class Organization extends EasyRdf_Resource
         }
         return $sortedHoursSpecs;
     }
+    
+    /**
+     * Get the order of the day of the week
+     *
+     * @var string
+     * @return integer
+     */
 
     private static function getDayOrder($dayOfWeek)
     {
