@@ -3,7 +3,7 @@ require 'vendor/autoload.php';
 
 use Symfony\Component\Yaml\Yaml;
 use WorldCat\Registry\Organization;
-use WorldCat\RegistryHoursSpec;
+use WorldCat\Registry\HoursSpec;
 
 global $config;
 $config = Yaml::parse('app/config/config.yaml');
