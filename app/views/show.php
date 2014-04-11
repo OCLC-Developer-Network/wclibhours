@@ -1,21 +1,23 @@
 <html>
 <head>
 <title><?php print $org->getName(); ?></title>
-  <style type="text/css">
-  body { font-family: Helvetica, Verdana, sans-serif; margin: 2em 15%; }
-  </style>
+<style type="text/css">
+body {
+	font-family: Helvetica, Verdana, sans-serif;
+	margin: 2em 15%;
+}
+</style>
 </head>
 <body>
-<h1><?php print $org->getName(); ?></h1>
+	<h1><?php print $org->getName(); ?></h1>
 
-<?php 
+<?php
 $sortedHoursSpecs = $org->getNormalHoursSpecs();
 $sortedSpecialHoursSpecs = $org->getSortedSpecialHoursSpecs();
 
-if (!empty($sortedHoursSpecs)){
+if (! empty($sortedHoursSpecs)) {
     print "<h2>Normal Hours</h2>";
-    foreach (range(1, 7) as $number) 
-    {
+    foreach (range(1, 7) as $number) {
         print "<p>";
         $hoursSpec = $sortedHoursSpecs[$number];
         print "<strong>" . $hoursSpec->getDayOfWeek() . ":</strong> ";
@@ -26,10 +28,11 @@ if (!empty($sortedHoursSpecs)){
 }
 ?>
 
-<?php if (!empty($sortedSpecialHoursSpecs)){
+<?php
+
+if (! empty($sortedSpecialHoursSpecs)) {
     print "<h2>Breaks &amp; Holidays</h2>";
-    foreach($sortedSpecialHoursSpecs as $hoursSpec)
-    {
+    foreach ($sortedSpecialHoursSpecs as $hoursSpec) {
         print "<h3>" . $hoursSpec->getDescription() . "</h3>\n";
         print "<p>";
         print $hoursSpec->getStartDate(TRUE);

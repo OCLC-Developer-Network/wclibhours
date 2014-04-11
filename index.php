@@ -8,7 +8,7 @@ use WorldCat\RegistryHoursSpec;
 global $config;
 $config = Yaml::parse('app/config/config.yaml');
 
-//unregister application/json because it is not RDF
+// unregister application/json because it is not RDF
 EasyRdf_Format::unregister('json');
 EasyRdf_Namespace::set('schema', 'http://schema.org/');
 EasyRdf_Namespace::set('wcir', 'http://purl.org/oclc/ontology/wcir/');

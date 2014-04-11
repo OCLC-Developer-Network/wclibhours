@@ -4,23 +4,25 @@ namespace WorldCat\Registry;
 use \EasyRdf_Resource;
 use \EasyRdf_Format;
 
-Class Organization extends EasyRdf_Resource
-{   
+class Organization extends EasyRdf_Resource
+{
+
     function getName()
     {
         $names = $this->all('schema:name');
         $name = $names[0];
         return $name->getValue();
     }
-    
+
     function getNormalHoursSpecs()
     {
         $normalHours = $this->all('wcir:normalHours');
-                
-        if(empty($normalHours)) {
+        
+        if (empty($normalHours)) {
             $sortedHoursSpecs = array();
         } else {
-            $this->graph->load($this->getResource('wcir:normalHours')->getUri());
+            $this->graph->load($this->getResource('wcir:normalHours')
+                ->getUri());
             $sortedHoursSpecs = $this->sortNormalHoursSpecs($normalHours[0]);
         }
         return $sortedHoursSpecs;
@@ -30,22 +32,22 @@ Class Organization extends EasyRdf_Resource
     {
         $specialHours = $this->all('wcir:specialHours');
         
-        if (empty($specialHours)){
+        if (empty($specialHours)) {
             $hoursSpecs = array();
         } else {
-            $this->graph->load($this->getResource('wcir:specialHours')->getUri());
+            $this->graph->load($this->getResource('wcir:specialHours')
+                ->getUri());
             $specialHoursSpec = $specialHours[0];
             $hoursSpecs = $specialHoursSpec->all('wcir:hoursSpecifiedBy');
             $hoursSpecs = $this->sortSpecialHoursSpecs($hoursSpecs);
         }
         return $hoursSpecs;
     }
-    
+
     private function sortNormalHoursSpecs($hoursResources)
     {
         $sortedHoursResources = array();
-        foreach ($hoursResources->all('wcir:hoursSpecifiedBy') as $hoursSpec)
-        {
+        foreach ($hoursResources->all('wcir:hoursSpecifiedBy') as $hoursSpec) {
             $dayOfWeek = HoursSpec::parseDayOfWeekFromUri($hoursSpec->getUri());
             $sortedHoursResources[static::getDayOrder($dayOfWeek)] = $hoursSpec;
         }
@@ -56,8 +58,7 @@ Class Organization extends EasyRdf_Resource
     {
         $sortedHoursSpecs = array();
         $hoursSpecsByStartDate = array();
-        foreach ($specialHoursSpecs as $specialHoursSpec)
-        {
+        foreach ($specialHoursSpecs as $specialHoursSpec) {
             $startDateStr = $specialHoursSpec->getStartDate()->getValue();
             $hoursSpecsByStartDate[$startDateStr] = $specialHoursSpec;
         }
@@ -65,14 +66,13 @@ Class Organization extends EasyRdf_Resource
         $dates = array_keys($hoursSpecsByStartDate);
         sort($dates);
         $i = 0;
-        foreach ($dates as $date)
-        {
+        foreach ($dates as $date) {
             $sortedHoursSpecs[$i] = $hoursSpecsByStartDate[$date];
-            $i++;
+            $i ++;
         }
         return $sortedHoursSpecs;
     }
-    
+
     private static function getDayOrder($dayOfWeek)
     {
         global $config;
@@ -80,4 +80,3 @@ Class Organization extends EasyRdf_Resource
         return $days[$dayOfWeek];
     }
 }
-?>
