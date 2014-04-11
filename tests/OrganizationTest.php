@@ -9,7 +9,7 @@ Class OrganizationTest extends \PHPUnit_Framework_TestCase {
 		EasyRdf_Namespace::set('schema', 'http://schema.org/');
         EasyRdf_Namespace::set('wcir', 'http://purl.org/oclc/ontology/wcir/');
         EasyRdf_TypeMapper::set('schema:Organization', 'WorldCat\Registry\Organization');
-        EasyRdf_TypeMapper::set('wcir:hoursSpecification', 'WorldCat\Registry\Models\HoursSpec');
+        EasyRdf_TypeMapper::set('wcir:hoursSpecification', 'WorldCat\Registry\HoursSpec');
         $this->graph = new EasyRdf_Graph();
         $this->graph->parseFile("sample-data/organization.rdf");
 	}
@@ -23,14 +23,14 @@ Class OrganizationTest extends \PHPUnit_Framework_TestCase {
 	    $this->assertNotNull($org->getNormalHoursSpecs());
 	    $this->assertCount(7, $org->getNormalHoursSpecs());
 	    $normalHours = $org->getNormalHoursSpecs();
-	    $this->assertInstanceOf('OCLC\WorldCatRegistryDemo\Models\HoursSpec', $normalHours[1]);
+	    $this->assertInstanceOf('WorldCat\Registry\HoursSpec', $normalHours[1]);
 	    $SundayHours = $normalHours[1];
 	    $this->assertEquals('Sunday', $SundayHours->getDayOfWeek());
 	    
 	    $this->assertNotNull($org->getSortedSpecialHoursSpecs());
 	    $this->assertCount(2, $org->getSortedSpecialHoursSpecs());
 	    $specialHours = $org->getSortedSpecialHoursSpecs();
-	    $this->assertInstanceOf('OCLC\WorldCatRegistryDemo\Models\HoursSpec', $specialHours[0]);
+	    $this->assertInstanceOf('WorldCat\Registry\HoursSpec', $specialHours[0]);
 	    
 	}
 	
@@ -45,7 +45,7 @@ Class OrganizationTest extends \PHPUnit_Framework_TestCase {
 	    $this->assertNotNull($org->getNormalHoursSpecs());
 	    $this->assertCount(7, $org->getNormalHoursSpecs());
 	    $normalHours = $org->getNormalHoursSpecs();
-	    $this->assertInstanceOf('OCLC\WorldCatRegistryDemo\Models\HoursSpec', $normalHours[1]);
+	    $this->assertInstanceOf('WorldCat\Registry\HoursSpec', $normalHours[1]);
 	    $SundayHours = $normalHours[1];
 	    $this->assertEquals('Sunday', $SundayHours->getDayOfWeek());
 	
@@ -77,13 +77,13 @@ Class OrganizationTest extends \PHPUnit_Framework_TestCase {
 	    $this->assertNotNull($org->getNormalHoursSpecs());
 	    $this->assertCount(7, $org->getNormalHoursSpecs());
 	    $normalHours = $org->getNormalHoursSpecs();
-	    $this->assertInstanceOf('OCLC\WorldCatRegistryDemo\Models\HoursSpec', $normalHours[1]);
+	    $this->assertInstanceOf('WorldCat\Registry\HoursSpec', $normalHours[1]);
 	    $SundayHours = $normalHours[1];
 	    $this->assertEquals('Sunday', $SundayHours->getDayOfWeek());
 	     
 	    $this->assertNotNull($org->getSortedSpecialHoursSpecs());
 	    $this->assertCount(2, $org->getSortedSpecialHoursSpecs());
 	    $specialHours = $org->getSortedSpecialHoursSpecs();
-	    $this->assertInstanceOf('OCLC\WorldCatRegistryDemo\Models\HoursSpec', $specialHours[0]);
+	    $this->assertInstanceOf('WorldCat\Registry\HoursSpec', $specialHours[0]);
 	}
 }

@@ -8,7 +8,7 @@ Class HoursSpecTest extends \PHPUnit_Framework_TestCase {
 	function setUp(){
 		EasyRdf_Namespace::set('schema', 'http://schema.org/');
         EasyRdf_Namespace::set('wcir', 'http://purl.org/oclc/ontology/wcir/');
-        EasyRdf_TypeMapper::set('wcir:hoursSpecification', 'OCLC\WorldCatRegistryDemo\Models\HoursSpec');
+        EasyRdf_TypeMapper::set('wcir:hoursSpecification', 'WorldCat\Registry\HoursSpec');
         
 	}
 	
