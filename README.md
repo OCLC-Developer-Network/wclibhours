@@ -33,5 +33,5 @@ In a Terminal Window
 
 ```bash
 $ cd tests/
-$ ../vendor/phpunit
+$ ../vendor/bin/phpunit
 ```
