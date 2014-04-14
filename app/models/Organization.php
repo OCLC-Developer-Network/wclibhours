@@ -4,12 +4,12 @@ namespace WorldCat\Registry;
 use \EasyRdf_Resource;
 use \EasyRdf_Format;
 
+/**
+ * A class that represents an Organization in the WorldCat Registry
+ *
+ */
 class Organization extends EasyRdf_Resource
-{
-    /**
-     * A class that represents an Organization in the WorldCat Registry
-     *
-     */
+{ 
     
     /**
      * Get Name

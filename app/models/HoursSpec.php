@@ -3,12 +3,12 @@ namespace WorldCat\Registry;
 
 use \EasyRdf_Resource;
 
+/**
+ * A class that represents an Hours Specification in the WorldCat Registry
+ *
+ */
 class HoursSpec extends EasyRdf_Resource
 {
-    /**
-     * A class that represents an Hours Specification in the WorldCat Registry
-     *
-     */
 
     /**
      * Get Day of the week
@@ -23,7 +23,7 @@ class HoursSpec extends EasyRdf_Resource
     /**
      * Get Opening Time
      *
-     * @return string
+     * @return EasyRdf_Literal
      */
 
     function getOpeningTime()
@@ -34,7 +34,7 @@ class HoursSpec extends EasyRdf_Resource
     /**
      * Get Closing time
      *
-     * @return string
+     * @return EasyRdf_Literal
      */
     function getClosingTime()
     {
@@ -44,7 +44,7 @@ class HoursSpec extends EasyRdf_Resource
     /**
      * Get Description
      *
-     * @return string
+     * @return EasyRdf_Literal
      */
 
     function getDescription()
@@ -55,7 +55,7 @@ class HoursSpec extends EasyRdf_Resource
     /**
      * Get Start Date
      *
-     * @return string
+     * @return EasyRdf_Literal
      */
 
     function getStartDate($format = FALSE)
@@ -70,7 +70,7 @@ class HoursSpec extends EasyRdf_Resource
     /**
      * Get End Date
      *
-     * @return string
+     * @return EasyRdf_Literal
      */
 
     function getEndDate($format = FALSE)
@@ -85,7 +85,7 @@ class HoursSpec extends EasyRdf_Resource
     /**
      * Get Open Status
      *
-     * @return string
+     * @return EasyRdf_Literal
      */
 
     function getOpenStatus()
