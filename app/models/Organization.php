@@ -31,14 +31,13 @@ class Organization extends EasyRdf_Resource
 
     function getNormalHoursSpecs()
     {
-        $normalHours = $this->all('wcir:normalHours');
+        $normalHours = $this->getResource('wcir:normalHours');
         
         if (empty($normalHours)) {
             $sortedHoursSpecs = array();
         } else {
-            $this->graph->load($this->getResource('wcir:normalHours')
-                ->getUri());
-            $sortedHoursSpecs = $this->sortNormalHoursSpecs($normalHours[0]);
+            $this->graph->load($normalHours->getUri());
+            $sortedHoursSpecs = $this->sortNormalHoursSpecs($normalHours);
         }
         return $sortedHoursSpecs;
     }
@@ -51,14 +50,13 @@ class Organization extends EasyRdf_Resource
 
     function getSortedSpecialHoursSpecs()
     {
-        $specialHours = $this->all('wcir:specialHours');
+        $specialHours = $this->getResource('wcir:specialHours');
         
         if (empty($specialHours)) {
             $hoursSpecs = array();
         } else {
-            $this->graph->load($this->getResource('wcir:specialHours')
-                ->getUri());
-            $specialHoursSpec = $specialHours[0];
+            $this->graph->load($specialHours->getUri());
+            $specialHoursSpec = $specialHours;
             $hoursSpecs = $specialHoursSpec->all('wcir:hoursSpecifiedBy');
             $hoursSpecs = $this->sortSpecialHoursSpecs($hoursSpecs);
         }
