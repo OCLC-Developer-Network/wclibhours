@@ -55,10 +55,11 @@ class HoursSpecTest extends \PHPUnit_Framework_TestCase
      */
     function testParseSpecialHoursClosed()
     {
-        $graph = new EasyRdf_Graph();
-        $graph->parseFile("sample-data/special-hours.rdf");
-        $hoursSpecs = $graph->allOfType('wcir:hoursSpecification');
-        $hoursSpec = $hoursSpecs[0];
+        $graph = new EasyRdf_Graph('http://localhost/wclibhours/tests/sample-data/special-hours.rdf');
+        $graph->load();
+        $hoursSpec = $graph->resource('http://localhost/wclibhours/tests/sample-data/normal-hours.rdf#6972');
+        
+        $this->assertEquals('WorldCat\Registry\HoursSpec', get_class($hoursSpec));
         $this->assertEquals('2013-12-25T12:00:00', $hoursSpec->getStartDate());
         $this->assertEquals('2013-12-25T12:00:00', $hoursSpec->getEndDate());
         $this->assertEquals('Christmas', $hoursSpec->getDescription());
@@ -72,10 +73,11 @@ class HoursSpecTest extends \PHPUnit_Framework_TestCase
      */
     function testParseSpecialHoursOpen()
     {
-        $graph = new EasyRdf_Graph();
-        $graph->parseFile("sample-data/special-hours.rdf");
-        $hoursSpecs = $graph->allOfType('wcir:hoursSpecification');
-        $hoursSpec = $hoursSpecs[1];
+        $graph = new EasyRdf_Graph('http://localhost/wclibhours/tests/sample-data/special-hours.rdf');
+        $graph->load();
+        $hoursSpec = $graph->resource('http://localhost/wclibhours/tests/sample-data/normal-hours.rdf#19096');
+        
+        $this->assertEquals('WorldCat\Registry\HoursSpec', get_class($hoursSpec));
         $this->assertEquals('2014-03-16T12:00:00', $hoursSpec->getStartDate());
         $this->assertEquals('2014-03-22T12:00:00', $hoursSpec->getEndDate());
         $this->assertEquals('Spring Break 2014', $hoursSpec->getDescription());
