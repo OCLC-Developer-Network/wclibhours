@@ -19,22 +19,11 @@ class HoursSpecTest extends \PHPUnit_Framework_TestCase
         $graph->load();
         $hoursSpecs = $graph->allOfType('wcir:hoursSpecification');
         
-        $validDays = array(
-            'Sunday',
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Friday',
-            'Saturday'
-        );
         foreach ($hoursSpecs as $hoursSpec)
         {
             $openingTime = $hoursSpec->getOpeningTime();
             $closingTime = $hoursSpec->getClosingTime();
             $dayOfWeek = $hoursSpec->getDayOfWeek();
-            
-            $this->assertContains($dayOfWeek, $validDays);
             
             if ($dayOfWeek == 'Friday')
             {
