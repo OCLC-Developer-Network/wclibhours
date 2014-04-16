@@ -3,9 +3,6 @@ use WorldCat\Registry\Organization;
 
 class OrganizationTest extends \PHPUnit_Framework_TestCase
 {
-
-    private $graph;
-
     function setUp()
     {
         EasyRdf_Format::unregister('json');
@@ -13,8 +10,6 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
         EasyRdf_Namespace::set('wcir', 'http://purl.org/oclc/ontology/wcir/');
         EasyRdf_TypeMapper::set('schema:Organization', 'WorldCat\Registry\Organization');
         EasyRdf_TypeMapper::set('wcir:hoursSpecification', 'WorldCat\Registry\HoursSpec');
-        $this->graph = new EasyRdf_Graph();
-        $this->graph->parseFile("sample-data/organization.rdf");
     }
 
     /**
@@ -22,15 +17,18 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
      */
     function testParse()
     {
-        $org = $this->graph->resource('https://worldcat.org/wcr/organization/resource/128807', "schema:Organization");
+        $graph = new EasyRdf_Graph("http://localhost/wclibhours/tests/sample-data/organization.rdf");
+        $graph->load();
+        $org = $graph->resource('http://localhost/wclibhours/tests/sample-data/organization.rdf');
+
         $this->assertEquals('OCLC WorldShare Platform Sandbox Institution', $org->getName());
-        
         $this->assertNotNull($org->getNormalHoursSpecs());
         $this->assertCount(7, $org->getNormalHoursSpecs());
+        
         $normalHours = $org->getNormalHoursSpecs();
         $this->assertInstanceOf('WorldCat\Registry\HoursSpec', $normalHours[1]);
-        $SundayHours = $normalHours[1];
-        $this->assertEquals('Sunday', $SundayHours->getDayOfWeek());
+        $sundayHours = $normalHours[1];
+        $this->assertEquals('Sunday', $sundayHours->getDayOfWeek());
         
         $this->assertNotNull($org->getSortedSpecialHoursSpecs());
         $this->assertCount(2, $org->getSortedSpecialHoursSpecs());
@@ -43,33 +41,22 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
      */
     function testParseNoSpecialHoursHoursGraph()
     {
-        $this->graphOrgOnly = new EasyRdf_Graph();
-        $this->graphOrgOnly->parseFile("sample-data/organizationNoSpecialHours.rdf");
-        $orgs = $this->graphOrgOnly->allOfType('schema:Organization');
-        $org = $orgs[0];
-        $this->assertEquals('OCLC WorldShare Platform Sandbox Institution', $org->getName());
-        
-        $this->assertNotNull($org->getNormalHoursSpecs());
-        $this->assertCount(7, $org->getNormalHoursSpecs());
-        $normalHours = $org->getNormalHoursSpecs();
-        $this->assertInstanceOf('WorldCat\Registry\HoursSpec', $normalHours[1]);
-        $SundayHours = $normalHours[1];
-        $this->assertEquals('Sunday', $SundayHours->getDayOfWeek());
+        $graph = new EasyRdf_Graph("http://localhost/wclibhours/tests/sample-data/organizationNoSpecialHours.rdf");
+        $graph->load();
+        $org = $graph->resource('http://localhost/wclibhours/tests/sample-data/organizationNoSpecialHours.rdf');
         
         $this->assertEmpty($org->getSortedSpecialHoursSpecs());
     }
-
+    
     /**
      * Organization with no hours
      */
     function testParseNoHoursGraph()
     {
-        $this->graphOrgNoHours = new EasyRdf_Graph();
-        $this->graphOrgNoHours->parseFile("sample-data/organizationNoHours.rdf");
-        $orgs = $this->graphOrgNoHours->allOfType('schema:Organization');
-        $org = $orgs[0];
-        $this->assertEquals('OCLC WorldShare Platform Sandbox Institution', $org->getName());
-        
+        $graph = new EasyRdf_Graph("http://localhost/wclibhours/tests/sample-data/organizationNoHours.rdf");
+        $graph->load();
+        $org = $graph->resource('http://localhost/wclibhours/tests/sample-data/organizationNoHours.rdf');
+
         $this->assertEmpty($org->getNormalHoursSpecs());
         $this->assertEmpty($org->getSortedSpecialHoursSpecs());
     }
