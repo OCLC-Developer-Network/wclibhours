@@ -21,7 +21,7 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
         $graph->load();
         $org = $graph->resource('http://localhost/wclibhours/tests/sample-data/organization.rdf');
         
-        $this->assertEquals('WorldCat\Registry\Organization', get_class($org));
+        $this->assertInstanceOf('WorldCat\Registry\Organization', $org);
 
         $this->assertEquals('OCLC WorldShare Platform Sandbox Institution', $org->getName());
         $this->assertNotNull($org->getNormalHoursSpecs());
@@ -47,7 +47,7 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
         $graph->load();
         $org = $graph->resource('http://localhost/wclibhours/tests/sample-data/organizationNoSpecialHours.rdf');
         
-        $this->assertEquals('WorldCat\Registry\Organization', get_class($org));
+        $this->assertInstanceOf('WorldCat\Registry\Organization', $org);
         $this->assertEmpty($org->getSortedSpecialHoursSpecs());
     }
     
@@ -60,7 +60,7 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
         $graph->load();
         $org = $graph->resource('http://localhost/wclibhours/tests/sample-data/organizationNoHours.rdf');
 
-        $this->assertEquals('WorldCat\Registry\Organization', get_class($org));
+        $this->assertInstanceOf('WorldCat\Registry\Organization', $org);
         $this->assertEmpty($org->getNormalHoursSpecs());
         $this->assertEmpty($org->getSortedSpecialHoursSpecs());
     }
