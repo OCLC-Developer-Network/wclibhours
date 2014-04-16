@@ -21,6 +21,8 @@ class HoursSpecTest extends \PHPUnit_Framework_TestCase
         
         foreach ($hoursSpecs as $hoursSpec)
         {
+            $this->assertEquals('WorldCat\Registry\HoursSpec', get_class($hoursSpec));
+            
             $openingTime = $hoursSpec->getOpeningTime();
             $closingTime = $hoursSpec->getClosingTime();
             $dayOfWeek = $hoursSpec->getDayOfWeek();
