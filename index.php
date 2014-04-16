@@ -1,4 +1,5 @@
 <?php
+
 require 'vendor/autoload.php';
 
 use Symfony\Component\Yaml\Yaml;
@@ -15,10 +16,9 @@ EasyRdf_Namespace::set('wcir', 'http://purl.org/oclc/ontology/wcir/');
 EasyRdf_TypeMapper::set('schema:Organization', 'WorldCat\Registry\Organization');
 EasyRdf_TypeMapper::set('wcir:hoursSpecification', 'WorldCat\Registry\HoursSpec');
 
-$graph = new EasyRdf_Graph();
-$graph->load('https://worldcat.org/wcr/organization/resource/' . $config['institution']);
-
-$org = $graph->resource('https://worldcat.org/wcr/organization/resource/' . $config['institution'], "schema:Organization");
+$graph = new EasyRdf_Graph($config['organization']);
+$graph->load();
+$org = $graph->resource($config['organization']);
 
 include 'app/views/show.php';
 
