@@ -18,8 +18,7 @@ EasyRdf_TypeMapper::set('wcir:hoursSpecification', 'WorldCat\Registry\HoursSpec'
 $graph = new EasyRdf_Graph();
 $graph->load('https://worldcat.org/wcr/organization/resource/' . $config['institution']);
 
-$orgs = $graph->allOfType('schema:Organization');
-$org = $orgs[0];
+$org = $graph->resource('https://worldcat.org/wcr/organization/resource/' . $config['institution'], "schema:Organization");
 
 include 'app/views/show.php';
 

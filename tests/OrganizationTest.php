@@ -22,8 +22,7 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
      */
     function testParse()
     {
-        $orgs = $this->graph->allOfType('schema:Organization');
-        $org = $orgs[0];
+        $org = $this->graph->resource('https://worldcat.org/wcr/organization/resource/128807', "schema:Organization");
         $this->assertEquals('OCLC WorldShare Platform Sandbox Institution', $org->getName());
         
         $this->assertNotNull($org->getNormalHoursSpecs());
