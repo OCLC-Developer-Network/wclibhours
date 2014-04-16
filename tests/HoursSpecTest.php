@@ -3,9 +3,6 @@ use WorldCat\Registry\HoursSpec;
 
 class HoursSpecTest extends \PHPUnit_Framework_TestCase
 {
-
-    private $graph;
-
     function setUp()
     {
         EasyRdf_Namespace::set('schema', 'http://schema.org/');
@@ -18,12 +15,10 @@ class HoursSpecTest extends \PHPUnit_Framework_TestCase
      */
     function testParseNormalHours()
     {
-        $this->graph = new EasyRdf_Graph();
-        $this->graph->parseFile("sample-data/normal-hours.rdf");
-        $hoursSpecs = $this->graph->allOfType('wcir:hoursSpecification');
-        $hoursSpec = $hoursSpecs[0];
-        $this->assertNotEmpty($hoursSpec->getDayOfWeek());
-        // want to check to see this is a real day of the week
+        $graph = new EasyRdf_Graph("http://localhost/wclibhours/tests/sample-data/normal-hours.rdf");
+        $graph->load();
+        $hoursSpecs = $graph->allOfType('wcir:hoursSpecification');
+        
         $validDays = array(
             'Sunday',
             'Monday',
@@ -33,10 +28,37 @@ class HoursSpecTest extends \PHPUnit_Framework_TestCase
             'Friday',
             'Saturday'
         );
-        $this->assertContains($hoursSpec->getDayOfWeek(), $validDays);
-        $this->assertEquals('08:00', $hoursSpec->getOpeningTime());
-        $this->assertEquals('17:00', $hoursSpec->getClosingTime());
-        $this->assertEquals('Open', $hoursSpec->getOpenStatus());
+        foreach ($hoursSpecs as $hoursSpec)
+        {
+            $openingTime = $hoursSpec->getOpeningTime();
+            $closingTime = $hoursSpec->getClosingTime();
+            $dayOfWeek = $hoursSpec->getDayOfWeek();
+            
+            $this->assertContains($dayOfWeek, $validDays);
+            
+            if ($dayOfWeek == 'Friday')
+            {
+                $this->assertEquals('08:00', $openingTime);
+                $this->assertEquals('17:00', $closingTime);
+            }
+            else if ($dayOfWeek == 'Saturday')
+            {
+                $this->assertEquals('10:00', $openingTime);
+                $this->assertEquals('17:00', $closingTime);
+            }
+            else if ($dayOfWeek == 'Sunday')
+            {
+                $this->assertEquals('12:00', $openingTime);
+                $this->assertEquals('17:00', $closingTime);
+            }
+            else
+            {
+                $this->assertEquals('08:00', $openingTime);
+                $this->assertEquals('20:00', $closingTime);
+            }
+
+            $this->assertEquals('Open', $hoursSpec->getOpenStatus());
+        }
     }
 
     /**
@@ -44,9 +66,9 @@ class HoursSpecTest extends \PHPUnit_Framework_TestCase
      */
     function testParseSpecialHoursClosed()
     {
-        $this->graph = new EasyRdf_Graph();
-        $this->graph->parseFile("sample-data/special-hours.rdf");
-        $hoursSpecs = $this->graph->allOfType('wcir:hoursSpecification');
+        $graph = new EasyRdf_Graph();
+        $graph->parseFile("sample-data/special-hours.rdf");
+        $hoursSpecs = $graph->allOfType('wcir:hoursSpecification');
         $hoursSpec = $hoursSpecs[0];
         $this->assertEquals('2013-12-25T12:00:00', $hoursSpec->getStartDate());
         $this->assertEquals('2013-12-25T12:00:00', $hoursSpec->getEndDate());
@@ -61,9 +83,9 @@ class HoursSpecTest extends \PHPUnit_Framework_TestCase
      */
     function testParseSpecialHoursOpen()
     {
-        $this->graph = new EasyRdf_Graph();
-        $this->graph->parseFile("sample-data/special-hours.rdf");
-        $hoursSpecs = $this->graph->allOfType('wcir:hoursSpecification');
+        $graph = new EasyRdf_Graph();
+        $graph->parseFile("sample-data/special-hours.rdf");
+        $hoursSpecs = $graph->allOfType('wcir:hoursSpecification');
         $hoursSpec = $hoursSpecs[1];
         $this->assertEquals('2014-03-16T12:00:00', $hoursSpec->getStartDate());
         $this->assertEquals('2014-03-22T12:00:00', $hoursSpec->getEndDate());
