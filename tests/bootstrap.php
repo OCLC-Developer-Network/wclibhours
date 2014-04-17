@@ -7,5 +7,5 @@ global $config;
 
 use Symfony\Component\Yaml\Yaml;
 
-$config = Yaml::parse('../app/config/config.yaml');
+$config = Yaml::parse('config/test_config.yaml');
 ?>

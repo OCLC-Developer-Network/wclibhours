@@ -29,9 +29,19 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
         
         $normalHours = $org->getNormalHoursSpecs();
         $this->assertCount(7, $normalHours);
-        foreach ($normalHours as $hoursSpec)
+        foreach (range(1, 7) as $number) 
         {
-            $this->assertInstanceOf('WorldCat\Registry\HoursSpec', $hoursSpec);
+            // Verify that each normal hours object is an HoursSpec
+            $this->assertInstanceOf('WorldCat\Registry\HoursSpec', $normalHours[$number]);
+            
+            // Verify the sort order based on the test_config.yml file
+            if ($number == 1) $this->assertEquals('Monday', $normalHours[$number]->getDayOfWeek());
+            else if ($number == 2) $this->assertEquals('Tuesday', $normalHours[$number]->getDayOfWeek());
+            else if ($number == 3) $this->assertEquals('Wednesday', $normalHours[$number]->getDayOfWeek());
+            else if ($number == 4) $this->assertEquals('Thursday', $normalHours[$number]->getDayOfWeek());
+            else if ($number == 5) $this->assertEquals('Friday', $normalHours[$number]->getDayOfWeek());
+            else if ($number == 6) $this->assertEquals('Saturday', $normalHours[$number]->getDayOfWeek());
+            else if ($number == 7) $this->assertEquals('Sunday', $normalHours[$number]->getDayOfWeek());
         }
         
         $specialHours = $org->getSortedSpecialHoursSpecs();
