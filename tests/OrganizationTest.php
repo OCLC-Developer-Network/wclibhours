@@ -28,14 +28,19 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(7, $org->getNormalHoursSpecs());
         
         $normalHours = $org->getNormalHoursSpecs();
-        $this->assertInstanceOf('WorldCat\Registry\HoursSpec', $normalHours[1]);
-        $sundayHours = $normalHours[1];
-        $this->assertEquals('Sunday', $sundayHours->getDayOfWeek());
+        $this->assertCount(7, $normalHours);
+        foreach ($normalHours as $hoursSpec)
+        {
+            $this->assertInstanceOf('WorldCat\Registry\HoursSpec', $hoursSpec);
+        }
         
-        $this->assertNotNull($org->getSortedSpecialHoursSpecs());
-        $this->assertCount(2, $org->getSortedSpecialHoursSpecs());
         $specialHours = $org->getSortedSpecialHoursSpecs();
-        $this->assertInstanceOf('WorldCat\Registry\HoursSpec', $specialHours[0]);
+        $this->assertNotNull($specialHours);
+        $this->assertCount(2, $specialHours);
+        foreach ($specialHours as $hoursSpec)
+        {
+            $this->assertInstanceOf('WorldCat\Registry\HoursSpec', $hoursSpec);
+        }
     }
 
     /**
