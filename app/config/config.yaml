@@ -1,9 +1,8 @@
 organization: http://localhost/wclibhours/tests/sample-data/organization.rdf
 timezone: America/New_York
 dateFormat: F j, Y
-show_branches: false
 dayOrder:
-  Sunday : 1
+  Sunday: 1
   Monday: 2
   Tuesday: 3
   Wednesday: 4
