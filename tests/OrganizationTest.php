@@ -22,12 +22,10 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
         $org = $graph->resource('http://localhost/wclibhours/tests/sample-data/organization.rdf');
         
         $this->assertInstanceOf('WorldCat\Registry\Organization', $org);
-
         $this->assertEquals('OCLC WorldShare Platform Sandbox Institution', $org->getName());
-        $this->assertNotNull($org->getNormalHoursSpecs());
-        $this->assertCount(7, $org->getNormalHoursSpecs());
         
         $normalHours = $org->getNormalHoursSpecs();
+        $this->assertNotNull($normalHours);
         $this->assertCount(7, $normalHours);
         foreach (range(1, 7) as $number) 
         {
