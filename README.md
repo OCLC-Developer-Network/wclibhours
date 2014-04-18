@@ -21,7 +21,7 @@ $ curl -s https://getcomposer.org/installer | php
 $ php composer.phar install
 ```
 
-[Composer](https://getcomposer.org/doc/00-intro.md) is a dependency management library for PHP. It is used to install the required libraries for testing and parsing RDF data.
+[Composer](https://getcomposer.org/doc/00-intro.md) is a dependency management library for PHP. It is used to install the required libraries for testing and parsing RDF data. The dependencies are configured in the file `composer.json`.
 
 ## Usage
 
