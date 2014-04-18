@@ -1,15 +1,16 @@
 <html>
 <head>
-<title><?php print $org->getName(); ?></title>
-<style type="text/css">
-body {
-	font-family: Helvetica, Verdana, sans-serif;
-	margin: 2em 15%;
-}
-</style>
+    <title><?php print $org->getName(); ?></title>
+    <style type="text/css">
+        body {
+        	font-family: Helvetica, Verdana, sans-serif;
+        	margin: 2em 15%;
+        }
+    </style>
 </head>
 <body>
-	<h1><?php print $org->getName(); ?></h1>
+
+<h1><?php print $org->getName(); ?></h1>
 
 <?php
 $sortedHoursSpecs = $org->getNormalHoursSpecs();
