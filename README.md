@@ -34,11 +34,11 @@ directory. Modify the file `app/config/config.yaml` to use the WorldCat Registry
 
 ## Running the tests
 
-The tests primarily use local files (tests/sample-data) to perform testing. These local file assume that you are running this application on your web server on localhost, port 80 and that you have not renamed the root directory in which application runs. 
+The tests primarily use local files (`tests/sample-data`) to perform testing. These local file assume that you are running this application on your web server on localhost, port 80 and that you have not renamed the root directory in which application runs. 
 
 The tests will make HTTP requests to those cached files as if it were making requests to the WorldCat Registry API. The cached copies are modified to use URIs in the RDF data to point at this localhost address to serve as mock data.
 
-In a Terminal Window
+In a terminal window:
 
 ```bash
 $ cd tests/
