@@ -93,7 +93,14 @@ class Organization extends EasyRdf_Resource
     function getBranchParent() 
     {
         $parent = $this->getResource('schema:branchOf');
-        $parent->load();
+        $fullGraph = new EasyRdf_Graph();
+        $fullGraph->load($this->getUri());
+        $fullGraph->load($parent->getUri());
+        
+        $this->graph = $fullGraph;
+
+        $parent = $this->getResource('schema:branchOf');
+    
         return $parent;
     }
     
