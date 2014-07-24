@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:wcir="http://purl.org/oclc/ontology/wcir/" xmlns:schema="http://schema.org/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:umbel="http://umbel.org/umbel#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:library="http://purl.org/library/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dcterms="http://purl.org/dc/terms/">
+    <rdf:Description rdf:about="http://localhost/wclibhours/tests/sample-data/organization_129055.rdf">
+        <rdf:type rdf:resource="http://schema.org/Organization"/>
+        <rdf:type rdf:resource="http://purl.org/oclc/ontology/wcir/Other"/>
+        <schema:name>COP Sandbox - South Branch</schema:name>
+        <dcterms:identifier>129055</dcterms:identifier>
+        <wcir:institutionName>COP Sandbox - South Branch</wcir:institutionName>
+        <wcir:testInstitution>false</wcir:testInstitution>
+        <wcir:trainingInstitution>false</wcir:trainingInstitution>
+        <wcir:normalHours rdf:resource="http://localhost/wclibhours/tests/sample-data/normal-hours_129055.rdf"/>
+        <schema:branchOf rdf:resource="http://localhost/wclibhours/tests/sample-data/organization.rdf"/>
+        <wcir:publicWiFi>false</wcir:publicWiFi>
+        <wcir:hasWMSConfig rdf:resource="http://worldcat.org/wcr/wms-config/resource/129055"/>
+    </rdf:Description>
+</rdf:RDF>
