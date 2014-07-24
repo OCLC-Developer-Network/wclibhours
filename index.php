@@ -16,9 +16,22 @@ EasyRdf_Namespace::set('wcir', 'http://purl.org/oclc/ontology/wcir/');
 EasyRdf_TypeMapper::set('schema:Organization', 'WorldCat\Registry\Organization');
 EasyRdf_TypeMapper::set('wcir:hoursSpecification', 'WorldCat\Registry\HoursSpec');
 
-$graph = new EasyRdf_Graph($config['organization']);
+if (isset($_GET['id'])){
+    $organizationUri = $_GET['id'];
+} else {
+    $organizationUri = $config['organization'];
+}
+$graph = new EasyRdf_Graph($organizationUri);
 $graph->load();
-$org = $graph->resource($config['organization']);
+$org = $graph->resource($organizationUri);
+
+if ($org->isBranch()){
+    $branches = $org->getBranchParent()->getSortedBranches();
+    array_unshift($branches, $org->getBranchParent());
+} else {
+    $branches = $org->getSortedBranches();
+    array_unshift($branches, $org);
+}
 
 include 'app/views/show.php';
 

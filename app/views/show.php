@@ -10,9 +10,20 @@ body {
 </head>
 <body>
 
-<!--  drop down menu of other branches here -->
+
 	<h1><?php print $org->getName(); ?></h1>
 
+	<form action="index.php" method="get">
+    <select name="id">
+    <?php             
+    foreach ($branches as $branch){
+        print "<option value=\"" . $branch->getUri() . "\"". ($branch->getUri() == $org->getUri() ? " selected" : "") . ">" . $branch->getName() . "</option>\n";
+    }
+    ?>
+    </select>
+    <input type="submit" value="Submit">
+    </form>
+	
 <?php
 $sortedHoursSpecs = $org->getNormalHoursSpecs();
 $sortedSpecialHoursSpecs = $org->getSortedSpecialHoursSpecs();
@@ -24,11 +35,20 @@ if (! empty($sortedHoursSpecs)) {
         print "<p>";
         $hoursSpec = $sortedHoursSpecs[$number];
         print "<strong>" . $hoursSpec->getDayOfWeek() . ":</strong> ";
-        print $hoursSpec->getOpeningTime() . ' ';
-        print $hoursSpec->getClosingTime() . ' ';
+        
+        if($hoursSpec->getOpenStatus() == 'Open24Hours') {
+            print "Open 24 Hours";
+        }elseif ($hoursSpec->getOpenStatus() == 'Open'){
+            print $hoursSpec->getOpeningTime() . ' ';
+            print $hoursSpec->getClosingTime() . ' ';
+        }else {
+            print "Closed";
+        }
         print "</p>\n";
     }
     print "</div>";
+} else {
+    print "<p>There are no hours for this institution</p>";
 }
 ?>
 
