@@ -10,7 +10,7 @@
          testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader">
     <testsuites>
     <testsuite name="IRHours">
-      <directory>.</directory>
+      <directory>tests</directory>
     </testsuite>
   </testsuites>
   </phpunit>
