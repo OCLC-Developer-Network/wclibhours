@@ -9,6 +9,8 @@ body {
 </style>
 </head>
 <body>
+
+<!--  drop down menu of other branches here -->
 	<h1><?php print $org->getName(); ?></h1>
 
 <?php
@@ -16,7 +18,8 @@ $sortedHoursSpecs = $org->getNormalHoursSpecs();
 $sortedSpecialHoursSpecs = $org->getSortedSpecialHoursSpecs();
 
 if (! empty($sortedHoursSpecs)) {
-    print "<h2>Normal Hours</h2>";
+    print "<div id=\"normalHours\">\n";
+    print "<h2>Normal Hours</h2>\n";
     foreach (range(1, 7) as $number) {
         print "<p>";
         $hoursSpec = $sortedHoursSpecs[$number];
@@ -25,13 +28,15 @@ if (! empty($sortedHoursSpecs)) {
         print $hoursSpec->getClosingTime() . ' ';
         print "</p>\n";
     }
+    print "</div>";
 }
 ?>
 
 <?php
 
 if (! empty($sortedSpecialHoursSpecs)) {
-    print "<h2>Breaks &amp; Holidays</h2>";
+    print "<div id=\"specialHours\">\n";
+    print "<h2>Breaks &amp; Holidays</h2>\n";
     foreach ($sortedSpecialHoursSpecs as $hoursSpec) {
         print "<h3>" . $hoursSpec->getDescription() . "</h3>\n";
         print "<p>";
@@ -44,8 +49,9 @@ if (! empty($sortedSpecialHoursSpecs)) {
         print $hoursSpec->getOpeningTime() . ' ';
         print $hoursSpec->getClosingTime() . ' ';
         print "</p>";
-        print "\n\n";
+        print "\n";
     }
+    print "</div>\n";
 }
 ?>
 </body>
