@@ -42,17 +42,6 @@
     <input type="submit" value="Submit">
     </form>
 	
-	<form action="index.php" method="get">
-    <select name="id">
-    <?php             
-    foreach ($branches as $branch){
-        print "<option value=\"" . $branch->getUri() . "\"". ($branch->getUri() == $org->getUri() ? " selected" : "") . ">" . $branch->getName() . "</option>\n";
-    }
-    ?>
-    </select>
-    <input type="submit" value="Submit">
-    </form>
-	
 <?php
 $sortedHoursSpecs = $org->getNormalHoursSpecs();
 $sortedSpecialHoursSpecs = $org->getSortedSpecialHoursSpecs();
