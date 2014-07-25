@@ -1,4 +1,21 @@
 <?php
+
+/*
+    Copyright 2014 OCLC
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/
+
 namespace WorldCat\Registry;
 
 use \EasyRdf_Resource;
@@ -11,7 +28,7 @@ class HoursSpec extends EasyRdf_Resource
 {
 
     /**
-     * Get Day of the week
+     * Get day of the week from the URI for this hours specification.
      *
      * @return string
      */
@@ -21,18 +38,17 @@ class HoursSpec extends EasyRdf_Resource
     }
     
     /**
-     * Get Opening Time
+     * Get the opening time for the current hours specification.
      *
      * @return EasyRdf_Literal
      */
-
     function getOpeningTime()
     {
         return $this->get('wcir:opens');
     }
 
     /**
-     * Get Closing time
+     * Get the closing time for the current hours specification.
      *
      * @return EasyRdf_Literal
      */
@@ -42,22 +58,21 @@ class HoursSpec extends EasyRdf_Resource
     }
     
     /**
-     * Get Description
+     * Get the opening time for the current hours specification. A description 
+     * may be a free text value like 'Spring Break'.
      *
      * @return EasyRdf_Literal
      */
-
     function getDescription()
     {
         return $this->get('wcir:description');
     }
     
     /**
-     * Get Start Date
+     * Get the start date for the current hours specification.
      *
      * @return EasyRdf_Literal
      */
-
     function getStartDate($format = FALSE)
     {
         if ($format) {
@@ -68,11 +83,10 @@ class HoursSpec extends EasyRdf_Resource
     }
     
     /**
-     * Get End Date
+     * Get the end date for the current hours specification.
      *
      * @return EasyRdf_Literal
      */
-
     function getEndDate($format = FALSE)
     {
         if ($format) {
@@ -83,11 +97,11 @@ class HoursSpec extends EasyRdf_Resource
     }
     
     /**
-     * Get Open Status
+     * Get the open status for the current hours specification. Values 
+     * typically include 'Open' or 'Closed'
      *
      * @return EasyRdf_Literal
      */
-
     function getOpenStatus()
     {
         return $this->get('wcir:openStatus');
@@ -98,7 +112,6 @@ class HoursSpec extends EasyRdf_Resource
      * @var string 
      * @return string
      */
-
     static function parseDayOfWeekFromUri($uri)
     {
         $dayOfWeek = substr($uri, strpos($uri, "#") + 1);
@@ -106,11 +119,10 @@ class HoursSpec extends EasyRdf_Resource
     }
     
     /**
-     * Format the Date
+     * Format the date. The format is specified in the global configuration.
      * @var string
      * @return string
      */
-
     private static function formatDateTimeAsDate($dateTime)
     {
         global $config;

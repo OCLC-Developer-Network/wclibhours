@@ -1,4 +1,21 @@
 <?php
+
+/*
+    Copyright 2014 OCLC
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/
+
 namespace WorldCat\Registry;
 
 use \EasyRdf_Resource;
@@ -12,7 +29,7 @@ use \EasyRdf_Graph;
 class Organization extends EasyRdf_Resource
 { 
     /**
-     * Get Name
+     * Return the name for the current Organization.
      *
      * @return string
      */
@@ -24,11 +41,12 @@ class Organization extends EasyRdf_Resource
     }
     
     /**
-     * Get Normal Hours Specifications
+     * Get the normal hours specification data for a library in the order 
+     * specified by the configuration. Sorting is configured by day of the 
+     * week.
      *
      * @return array
      */
-
     function getNormalHoursSpecs()
     {
         $normalHours = $this->getResource('wcir:normalHours');
@@ -43,7 +61,9 @@ class Organization extends EasyRdf_Resource
     }
     
     /**
-     * Get Special Hours Specifications
+     * Get the special hours specification data for a library. Special hours
+     * specs are exceptions that override normal hours. The data is returned
+     * in sorted order according to the date to which it applies.
      *
      * @return array
      */
@@ -119,12 +139,11 @@ class Organization extends EasyRdf_Resource
     }
     
     /**
-     * Sort the Normal Hours by day of the week
+     * Sort the normal hours by day of the week.
      *
      * @var array 
      * @return array
      */
-
     private function sortNormalHoursSpecs($hoursResources)
     {
         $sortedHoursResources = array();
@@ -136,12 +155,11 @@ class Organization extends EasyRdf_Resource
     }
 
     /**
-     * Sort the Special Hours by Date
+     * Sort the special hours by date
      *
      * @var array
      * @return array
      */
-    
     private function sortSpecialHoursSpecs($specialHoursSpecs)
     {
         $sortedHoursSpecs = array();
@@ -178,12 +196,11 @@ class Organization extends EasyRdf_Resource
     }
     
     /**
-     * Get the order of the day of the week
+     * Get the order of the day of the week as configured by the global YAML file
      *
      * @var string
      * @return integer
      */
-
     private static function getDayOrder($dayOfWeek)
     {
         global $config;
