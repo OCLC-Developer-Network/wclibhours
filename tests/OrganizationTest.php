@@ -99,7 +99,8 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('WorldCat\Registry\Organization', $org);
         $this->assertEmpty($org->getSortedBranches());
         $this->assertNotEmpty($org->getBranchParent());
-        $this->assertEmpty($org->getBranchParent()->getSortedBranches());
+        $this->assertEmpty($org->getSortedBranches());
+        $this->assertNotEmpty($org->getBranchParent()->getSortedBranches());
     }
     
     /**
