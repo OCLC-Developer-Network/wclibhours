@@ -50,4 +50,15 @@ class FeatureContext extends RawMinkContext
             );
         }
     }
+    
+    /**
+     * @Then /^I should see that "([^"]*)" in "([^"]*)" is selected$/
+     */
+    public function inShouldBeSelected($optionValue, $select) {
+        $selectElement = $this->getSession()->getPage()->find('named', array('select', "\"{$select}\""));
+        $optionElement = $selectElement->find('named', array('option', "\"{$optionValue}\""));
+        //it should have the attribute selected and it should be set to selected
+        assertTrue($optionElement->hasAttribute("selected"));
+        assertTrue($optionElement->getAttribute("selected") == "selected");
+    }
 }
