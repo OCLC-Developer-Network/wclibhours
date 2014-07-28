@@ -20,7 +20,11 @@ Given I and on the library hours page
 When I select "COP Sandbox - East Branch" from the branches select menu
 And I press "Submit"
 Then I should see 1 "h1" element with the value of "COP Sandbox - East Branch"
-And I should see a normal hours section with an h2 element
-And I should see an h2 element with the value "Normal Hours"
-And I should see a paragraph for the hours of each day of the week
-And each paragraph should contain the name of the day of the week and the open and close times for that day.
+And I should see a section for normal hours  
+And the section for normal hours contains:  
+an h2 heading "Normal Hours"  
+a p element for each day of the week which contains:   
+- the name of the day of the week  
+- the open and closing times for that day or  
+- a statement the library is closed or  
+- a statement the library is open all day
