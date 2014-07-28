@@ -37,7 +37,7 @@ so I can determine if the library is open or closed on Labor Day
 When I go to the library hours page  
 Then I see a section for special hours  
 And the section for special hours contains:  
-- an h2 heading "Breaks & "
+- an h2 heading "Breaks & Holiday"
 - a p element for each time period with special hours
 - the label for the special hours time period
 - the open and closing times for that period or
