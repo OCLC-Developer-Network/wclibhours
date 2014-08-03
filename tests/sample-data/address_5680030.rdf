@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:wcir="http://purl.org/oclc/ontology/wcir/" xmlns:schema="http://schema.org/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:umbel="http://umbel.org/umbel#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:library="http://purl.org/library/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dcterms="http://purl.org/dc/terms/">
+    <rdf:Description rdf:about="http://localhost/wclibhours/tests/sample-data/address_5680030.rdf">
+        <rdf:type rdf:resource="http://schema.org/Place"/>
+        <rdf:type rdf:resource="http://schema.org/PostalAddress"/>
+        <rdf:type rdf:resource="http://purl.org/oclc/ontology/wcir/Shipping-Address"/>
+        <dcterms:identifier>5680030</dcterms:identifier>
+        <schema:streetAddress>6565 Kilgrour Pl</schema:streetAddress>
+        <schema:addressRegion>US-OH</schema:addressRegion>
+        <schema:addressCountry>US</schema:addressCountry>
+        <schema:addressLocality>Dublin</schema:addressLocality>
+        <schema:postalCode>43017</schema:postalCode>
+        <schema:geo>
+            <schema:geoCoordinates>
+                <schema:latitude>40.10178</schema:latitude>
+                <schema:longitude>-83.1231</schema:longitude>
+            </schema:geoCoordinates>
+        </schema:geo>
+        <wcir:locationOf rdf:resource="http://localhost/wclibhours/tests/sample-data/organization.rdf"/>
+    </rdf:Description>
+</rdf:RDF>

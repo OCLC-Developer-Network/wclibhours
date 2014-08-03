@@ -17,9 +17,9 @@
         <wcir:normalHours rdf:resource="http://localhost/wclibhours/tests/sample-data/normal-hours.rdf"/>
         <wcir:specialHours rdf:resource="http://localhost/wclibhours/tests/sample-data/special-hours.rdf"/>
 
-        <schema:location rdf:resource="https://worldcat.org/wcr/postal-address/resource/614816"/>
-        <schema:location rdf:resource="https://worldcat.org/wcr/postal-address/resource/5680031"/>
-        <schema:location rdf:resource="https://worldcat.org/wcr/postal-address/resource/5680030"/>
+        <schema:location rdf:resource="http://localhost/wclibhours/tests/sample-data/address_614816.rdf"/>
+        <schema:location rdf:resource="http://localhost/wclibhours/tests/sample-data/address_5680031.rdf"/>
+        <schema:location rdf:resource="http://localhost/wclibhours/tests/sample-data/address_5680030.rdf"/>
         <wcir:hasBranch rdf:resource="http://localhost/wclibhours/tests/sample-data/organization_129055.rdf"/>
         <wcir:hasBranch rdf:resource="http://localhost/wclibhours/tests/sample-data/organization_129056.rdf"/>
         <wcir:hasBranch rdf:resource="http://localhost/wclibhours/tests/sample-data/organization_129057.rdf"/>
