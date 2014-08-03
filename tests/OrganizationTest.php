@@ -26,6 +26,7 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
         EasyRdf_Namespace::set('schema', 'http://schema.org/');
         EasyRdf_Namespace::set('wcir', 'http://purl.org/oclc/ontology/wcir/');
         EasyRdf_TypeMapper::set('schema:Organization', 'WorldCat\Registry\Organization');
+        EasyRdf_TypeMapper::set('schema:PostalAddress', 'WorldCat\Registry\Address');
         EasyRdf_TypeMapper::set('wcir:hoursSpecification', 'WorldCat\Registry\HoursSpec');
     }
 
@@ -102,6 +103,29 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
             else if ($number == 2) $this->assertEquals('COP Sandbox - South Branch', $branches[$number]->getName());
             else if ($number == 3) $this->assertEquals('COP Sandbox - West Branch', $branches[$number]->getName());
         }
+    }
+    
+    /**
+     *@depends testParse
+     */
+    function testGetAddresses($org){
+    	$addresses = $org->getAddresses();
+    	$this->assertNotEmpty($addresses);
+    	
+    	foreach ($addresses as $address){
+    		$this->assertInstanceOf('WorldCat\Registry\Address', $address);
+    	}
+    }
+    
+    /**
+     * Test to getMainAddress
+     * @depends testParse
+     */
+    function testGetMainAddress($org)
+    {
+    	$mainAddress = $org->getMainAddress();
+    	$this->assertInstanceOf('WorldCat\Registry\Address', $mainAddress);
+    	$this->assertContains('wcir:Main-Address', $mainAddress->types());
     }
     
     /**

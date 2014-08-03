@@ -28,6 +28,7 @@ use \EasyRdf_Graph;
  */
 class Organization extends EasyRdf_Resource
 { 
+	
     /**
      * Return the name for the current Organization.
      *
@@ -125,7 +126,7 @@ class Organization extends EasyRdf_Resource
     }
     
     /**
-     * Binary for weather or not the organization is a branch
+     * Binary for whether or not the organization is a branch
      */
     
     function isBranch()
@@ -136,6 +137,44 @@ class Organization extends EasyRdf_Resource
             $isBranch = FALSE;
         }    
         return $isBranch;
+    }
+    
+    /**
+     * Get an array of addresses
+     * @return array
+     */
+    
+    function getAddresses(){
+    	$addresses = $this->allResources('schema:location');
+    	
+    	$fullGraph = new EasyRdf_Graph();
+        $fullGraph->load($this->getUri());
+        if ($addresses){
+            foreach ($addresses as $address){
+                $fullGraph->load($address->getUri());
+            }
+        }
+        
+        $this->graph = $fullGraph;
+        
+        $addresses = $this->allResources('schema:location');
+    	
+    	return $addresses;
+    }
+    
+    /**
+     * Get a WorldCat/Registry/Address object
+     * @return WorldCat/Registry/Address
+     */
+
+    function getMainAddress(){
+    	$addresses = self::getAddresses();
+    	
+    	$mainAddress = array_filter($addresses, function($address){
+    		return(in_array('wcir:Main-Address', $address->types()));
+    	});
+    	
+    	return $mainAddress[0];
     }
     
     /**
