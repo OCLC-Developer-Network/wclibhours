@@ -45,6 +45,15 @@
 <?php
 $sortedHoursSpecs = $org->getNormalHoursSpecs();
 $sortedSpecialHoursSpecs = $org->getSortedSpecialHoursSpecs();
+$mainAddress = $org->getMainAddress();
+
+if (!empty ($mainAddress)){
+	print "<div id=\"address\">\n";
+	print '<h2>Address</h2>\n';
+	print '<p>' . $mainAddress->getStreetAddress() . '</p>\n';
+	print '<p>' . $mainAddress->getCity() . ', ' . $mainAddress->getState() . ' ' . $mainAddress->getPostalCode() . '</p>\n';
+	print "</div>";
+}
 
 if (! empty($sortedHoursSpecs)) {
     print "<div id=\"normalHours\">\n";

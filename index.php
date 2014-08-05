@@ -30,6 +30,7 @@ EasyRdf_Format::unregister('json');
 EasyRdf_Namespace::set('schema', 'http://schema.org/');
 EasyRdf_Namespace::set('wcir', 'http://purl.org/oclc/ontology/wcir/');
 EasyRdf_TypeMapper::set('schema:Organization', 'WorldCat\Registry\Organization');
+EasyRdf_TypeMapper::set('schema:PostalAddress', 'WorldCat\Registry\Address');
 EasyRdf_TypeMapper::set('wcir:hoursSpecification', 'WorldCat\Registry\HoursSpec');
 
 if (isset($_GET['id'])){

@@ -7,7 +7,7 @@ Feature: View Main Branch Hours
     When I go to "/index.php"
     Then I should see an "h1" element
     And I should see "OCLC WorldShare Platform Sandbox Institution" in the "h1" element
-    And I should see 2 "h2" elements
+    And I should see 3 "h2" elements
     And I should see "Normal Hours" in the "div#normalHours h2" element
     And I should see 7 "div#normalHours p" elements
     And I should see the following in the repeated "p" element within the context of the "div#normalHours" element:
