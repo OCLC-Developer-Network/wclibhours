@@ -20,7 +20,7 @@ before_script:
    - cd ../
    - sudo sed -i -e "s,/var/www,$(pwd),g" /etc/apache2/sites-available/default
    - sudo service apache2 restart
-   - cat /etc/apache2/sites-available/default
+   - cd wclibhours
    
 # omitting "script:" will default to phpunit
 script: 
