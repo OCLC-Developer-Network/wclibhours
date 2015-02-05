@@ -22,6 +22,16 @@ use Behat\MinkExtension\Context\MinkContext;
  */
 class FeatureContext extends RawMinkContext
 {
+	
+	/** @AfterScenario */
+	public static function errors(ScenarioEvent $event)
+	{
+		if ($event->getResult() == '4'){
+			print static::showError($event->getContext()->getSubcontext('mink')->printCurrentUrl());
+			print static::showError($event->getContext()->getSubcontext('mink')->printLastResponse());
+		}
+	}
+	
     /**
      * Initializes context.
      * Every scenario gets it's own context object.

@@ -24,7 +24,7 @@ before_script:
    
 # omitting "script:" will default to phpunit
 script: 
-    - phpunit --configuration phpunit.xml --coverage-text
+    - phpunit --configuration phpunit.xml
     - vendor/bin/behat
 
 # configure notifications (email, IRC, campfire etc)
