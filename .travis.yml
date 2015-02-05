@@ -17,7 +17,11 @@ before_script:
    - echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
    - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
    # configure apache virtual hosts
-   - sudo sed -i -e "s,/var/www,$(pwd)/web,g" /etc/apache2/sites-available/default
+   - sudo cd ../../
+   - sudo mv OCLC-Developer-Network/wclibhours .
+   - sudo rm -R OCLC-Developer-Network
+   - sudo cd wclibhours
+   - sudo sed -i -e "s,/var/www,$(pwd),g" /etc/apache2/sites-available/default
    - sudo service apache2 restart
    - cat /etc/apache2/sites-available/default
    
