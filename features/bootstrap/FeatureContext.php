@@ -3,6 +3,7 @@
 use Behat\Behat\Context\ClosuredContextInterface,
     Behat\Behat\Context\TranslatedContextInterface,
     Behat\Behat\Context\BehatContext,
+    Behat\Behat\Event\ScenarioEvent,
     Behat\Behat\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
@@ -27,8 +28,8 @@ class FeatureContext extends RawMinkContext
 	public static function errors(ScenarioEvent $event)
 	{
 		if ($event->getResult() == '4'){
-			print static::showError($event->getContext()->getSubcontext('mink')->printCurrentUrl());
-			print static::showError($event->getContext()->getSubcontext('mink')->printLastResponse());
+			print 'URL:' . $event->getContext()->getSubcontext('mink')->printCurrentUrl();
+			print 'Last Response: ' . $event->getContext()->getSubcontext('mink')->printLastResponse();
 		}
 	}
 	
