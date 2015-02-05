@@ -19,6 +19,7 @@ before_script:
    # configure apache virtual hosts
    - sudo sed -i -e "s,/var/www,$(pwd)/web,g" /etc/apache2/sites-available/default
    - sudo service apache2 restart
+   - pwd
    
 # omitting "script:" will default to phpunit
 script: 
