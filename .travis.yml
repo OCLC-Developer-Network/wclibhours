@@ -19,6 +19,8 @@ before_script:
 script:
 - phpunit --configuration phpunit.xml
 - vendor/bin/behat
+after_script:
+- sed -i -e "s,SetEnv MODE test,,g" /etc/apache2/sites-available/default
 notifications:
   email:
     recipients:
