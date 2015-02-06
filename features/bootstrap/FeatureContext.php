@@ -28,8 +28,8 @@ class FeatureContext extends RawMinkContext
 	public static function errors(ScenarioEvent $event)
 	{
 		if ($event->getResult() == '4'){
-			print 'URL:' . $event->getContext()->getSubcontext('mink')->printCurrentUrl();
-			print 'Last Response: ' . $event->getContext()->getSubcontext('mink')->printLastResponse();
+			print "URL: " . $event->getContext()->getSubcontext('mink')->printCurrentUrl() . "\n";
+			print "Last Response: " . $event->getContext()->getSubcontext('mink')->printLastResponse() . "\n";
 		}
 	}
 	
