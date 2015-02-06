@@ -13,7 +13,7 @@ before_script:
   php5-intl
 - cd ../
 - sudo sed -i -e "s,/var/www,$(pwd),g" /etc/apache2/sites-available/default
-- sudo echo "SetEnv MODE test" >> /etc/apache2/sites-available/default
+- echo "SetEnv MODE test" >> /etc/apache2/sites-available/default
 - sudo service apache2 restart
 - cd wclibhours
 script:
