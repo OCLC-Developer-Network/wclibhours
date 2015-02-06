@@ -1,32 +1,32 @@
 language: php
-# list any PHP version you want to test against
 php:
 - 5.3
 - 5.4
 - 5.5
 - 5.6
-
 install:
-    - composer install
-
+- composer install
 before_script:
-   - sudo apt-get update > /dev/null
-   - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql php5-intl
-   # configure apache virtual hosts
-   - cd ../
-   - sudo sed -i -e "s,/var/www,$(pwd),g" /etc/apache2/sites-available/default
-   - sudo service apache2 restart
-   - cd wclibhours
-   
-# omitting "script:" will default to phpunit
-script: 
-    - phpunit --configuration phpunit.xml
-    - vendor/bin/behat
-
-# configure notifications (email, IRC, campfire etc)
+- sudo apt-get update > /dev/null
+- sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql
+  php5-intl
+- cd ../
+- sudo sed -i -e "s,/var/www,$(pwd),g" /etc/apache2/sites-available/default
+- sudo service apache2 restart
+- cd wclibhours
+script:
+- phpunit --configuration phpunit.xml
+- vendor/bin/behat
 notifications:
-    email:
-        recipients:
-        - coombsk@oclc.org
-        on_success: always
-        on_failure: always
+  email:
+    recipients:
+    - coombsk@oclc.org
+    on_success: always
+    on_failure: always
+deploy:
+  provider: heroku
+  api_key:
+    secure: gHH3kQ9ly602ODoNMOV1xdM2p9ytc4L4jLwQOnsdi4Ti3ZnanNEfdf4SxE+9aZpBNGuBQvkhmF/cOw1sHPHQrXPc0JpMeQBHlzNL762eGt5IcQOOkvKt/ZDS2547zq2/w/GH2E5rjLqKxopsXdVitNnXaZGaxwjZsJafiKjefQo=
+  app: wclibhours
+  on:
+    repo: OCLC-Developer-Network/wclibhours
