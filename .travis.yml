@@ -13,7 +13,7 @@ before_script:
   php5-intl
 - cd ../
 - sudo sed -i -e "s,/var/www,$(pwd),g" /etc/apache2/sites-available/default
-- echo 'variables_order = "EGPCS"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+- sudo echo "SetEnv MODE test" >> /etc/apache2/sites-available/default
 - sudo service apache2 restart
 - cd wclibhours
 script:
