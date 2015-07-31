@@ -23,11 +23,7 @@ use WorldCat\Registry\Organization;
 use WorldCat\Registry\HoursSpec;
 
 global $config;
-if (getenv('MODE') == "test"){
-	$config = Yaml::parse('app/config/test-config.yaml');
-} else {
-	$config = Yaml::parse('app/config/config.yaml');
-}
+$config = Yaml::parse('app/config/config.yaml');
 
 // unregister application/json because it is not RDF
 EasyRdf_Format::unregister('json');
